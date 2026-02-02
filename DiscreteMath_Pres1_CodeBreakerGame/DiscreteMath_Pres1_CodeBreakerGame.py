@@ -1,4 +1,5 @@
-﻿import pygame # Import the Pygame library
+﻿from telnetlib import GA
+import pygame # Import the Pygame library
 
 # Initialization 
 pygame.init() # Initialize Pygame
@@ -47,8 +48,18 @@ while running: # Main loop
     msg_text = font.render(message, True, (0,0,0)) # Render the message text
     screen.blit(msg_text, (30, 220)) # Draw the message on the screen
     
-    draw_NumPad(button_NumPad, "1", mouse_pos) # Draw the number pad button
-
+    count = 0
+    x_pos = 30
+    y_pos = 380
+    btn_w = 60
+    btn_h = 60
+    gap = 10
+    for y in range(2):          # Draw number pad buttons
+        for x in range(5):
+            rect = pygame.Rect(x_pos + x * (btn_w + gap),y_pos + y * (btn_h + gap), btn_w, btn_h)
+            draw_NumPad(rect, str(count), mouse_pos) # Draw number pad button
+            count += 1
+            
     pygame.display.flip()       # Update the display
  
 # Close Game    
