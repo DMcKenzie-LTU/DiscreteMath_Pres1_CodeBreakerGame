@@ -30,9 +30,9 @@ chapter,question,answer
 4.3,What is the smallest prime factor of 77?,7
 4.3,What is the greatest prime factor of 361?,19
 4.3,What is the smallest prime factor of 1147?,31
-4.3,(Y/N) Is the prime factorization of 10! equal to (2^8)*(3^2)*(5^2)*(7)?,no
-4.3,(Y/N) Are the values presented not relatively prime to 18? [2 3 6],yes
-4.3,(Y/N) Are these values pairwise relatively prime? [21 34 55],yes
-4.3,(Y/N) Are these values pairwise relatively prime? [14 15 85],no
-4.3,(Y/N) Are these values pairwise relatively prime? [23 41 49 64],yes
-4.3,(Y/N) Are these values pairwise relatively prime? [17 18 19 23],yes
+4.3,(Y/N) Is the prime factorization of 10! equal to (2^8)*(3^2)*(5^2)*(7)?,n
+4.3,(Y/N) Are the values presented not relatively prime to 18? [2 3 6],y
+4.3,(Y/N) Are these values pairwise relatively prime? [21 34 55],y
+4.3,(Y/N) Are these values pairwise relatively prime? [14 15 85],n
+4.3,(Y/N) Are these values pairwise relatively prime? [23 41 49 64],y
+4.3,(Y/N) Are these values pairwise relatively prime? [17 18 19 23],y

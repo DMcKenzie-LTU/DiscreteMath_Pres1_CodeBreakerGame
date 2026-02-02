@@ -63,7 +63,7 @@ button_Yes = pygame.Rect((30 + 5 * (60 + 10)), 380, 100, 60)
 button_No = pygame.Rect((30 + 5 * (60 + 10)), 450, 100, 60)
 button_Enter = pygame.Rect((140 + 5 * (60 + 10)), 380, 160, 130)
 
-# ---------- Build numpad ONCE ----------
+# ---------- Build numpad ----------
 numpad_buttons = []  # list of (rect, label)
 count = 0
 x_pos = 30
@@ -74,14 +74,18 @@ gap = 10
 
 for row in range(2):
     for col in range(5):
-        rect = pygame.Rect(
-            x_pos + col * (btn_w + gap),
-            y_pos + row * (btn_h + gap),
-            btn_w,
-            btn_h
-        )
+        rect = pygame.Rect(x_pos + col * (btn_w + gap),y_pos + row * (btn_h + gap), btn_w, btn_h)
         numpad_buttons.append((rect, str(count)))
         count += 1
+
+# ---------- Build Hex Buttons -----------
+hex_buttons = []
+hex_labels = ["A","B","C","D","E","F"]
+hex_y = y_pos + 2 * (btn_h + gap)
+
+for i, lab in enumerate(hex_labels):
+    rect = pygame.Rect(x_pos + i * (btn_w + gap), hex_y, btn_w, btn_h)
+    hex_buttons.append((rect,lab))
 
 # ---------- Load CSV ------------
 def load_questions_from_csv(filename):
@@ -159,6 +163,39 @@ def restart_run():
     }
 
 state = restart_run()
+
+def submit_answer(state, current):
+    user = state["input_text"]
+    expected = current["answer"]
+
+    if check_answer(user, expected):
+        state["message"] = "Correct!"
+        state["q_index"] += 1
+        state["tries_left"] = Tries_Per_Question
+    else:
+        state["tries_left"] -= 1
+        if state["tries_left"] > 0:
+            state["message"] = f"Wrong. {state['tries_left']} try left."
+        else:
+            state["wrong_questions"] += 1
+            state["message"] = f"Wrong question! ({state['wrong_questions']}/{Max_Wrong_Questions})"
+            state["q_index"] += 1
+            state["tries_left"] = Tries_Per_Question
+
+            # fail run after 3 wrong questions
+            if state["wrong_questions"] >= Max_Wrong_Questions:
+                state["message"] = "FAIL: 3 wrong questions. Restarting run..."
+                return restart_run()
+
+    state["input_text"] = ""
+
+    # finished 6 questions -> restart run
+    if state["q_index"] >= Total_Questions:
+        state["message"] = "Run complete! Restarting..."
+        return restart_run()
+
+    return state
+
 # ---------- Game state ----------
 clock = pygame.time.Clock()
 running = True
@@ -188,43 +225,26 @@ while running:
 
             # Enter button -> "submit"
             if button_Enter.collidepoint(event.pos):
-                user = state["input_text"]
-                expected = current["answer"]
-
-                if check_answer(user, expected):
-                    state["message"] = "Correct!"
-                    state["q_index"] += 1
-                    state["tries_left"] = Tries_Per_Question
-                else:
-                    state["tries_left"] -= 1
-                    if state["tries_left"] > 0:
-                        state["message"] = f"Wrong. {state['tries_left']} try left."
-                    else:
-                        # used both tries → counts as 1 wrong question
-                        state["wrong_questions"] += 1
-                        state["message"] = f"Wrong question! ({state['wrong_questions']}/{Max_Wrong_Questions})"
-                        state["q_index"] += 1
-                        state["tries_left"] = Tries_Per_Question
-
-                        # fail the run after 3 wrong questions
-                        if state["wrong_questions"] >= Max_Wrong_Questions:
-                            state["message"] = "FAIL: 3 wrong questions. Restarting run..."
-                            state = restart_run()
-                            continue
-
-                state["input_text"] = ""
-
-                # finished 6 questions → restart run
-                if state["q_index"] >= Total_Questions:
-                    state["message"] = "Run complete! Restarting..."
-                    state = restart_run()
+                if button_Enter.collidepoint(event.pos):
+                    state = submit_answer(state, current)
                     continue
 
             # YES/NO buttons -> append y/n
             if button_Yes.collidepoint(event.pos):
-                state["input_text"] += "y"
+                state["input_text"] = "y"
+                state = submit_answer(state, current)
+                continue
+
             if button_No.collidepoint(event.pos):
-                state["input_text"] += "n"
+                state["input_text"] = "n"
+                state = submit_answer(state, current)
+                continue
+
+            # Hex buttons
+            for rect, lab in hex_buttons:
+                if rect.collidepoint(event.pos):
+                    state["input_text"] += lab
+                    break
 
     # Draw
     screen.fill((240, 240, 240))
@@ -265,10 +285,14 @@ while running:
 
     for rect, label in numpad_buttons:
         draw_NumPad(rect, label, mouse_pos)
+    
+    for rect, lab in hex_buttons:
+        draw_NumPad(rect, lab, mouse_pos)
 
     draw_YesBtn(button_Yes, "YES", mouse_pos)
     draw_NoBtn(button_No, "NO", mouse_pos)
     draw_EnterBtn(button_Enter, "ENTER", mouse_pos)
+
 
     pygame.display.flip()
 
