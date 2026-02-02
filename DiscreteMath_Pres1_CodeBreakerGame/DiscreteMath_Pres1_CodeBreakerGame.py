@@ -16,12 +16,19 @@ def draw_button(rect, label, mouse_pos):    # Function to draw a button
     pygame.draw.rect(screen,(80, 80, 80), rect, width = 2, border_radius = 12)  # Draw button border
     text = font.render(label, True, (20, 20, 20))   # Render button label
     screen.blit(text, text.get_rect(center = rect.center))  # Draw button label
-    
-button_rect = pygame.Rect(30, 120, 160, 60) # Define button rectangle
-message = "Click the Button"    # Button label
 
+def draw_NumPad(rect, label, mouse_pos):    # Function to draw a number pad button
+    hovered = rect.collidepoint(mouse_pos)  # Check if mouse is over the button
+    bg = (0, 255, 0) if hovered else (0, 200, 0)    # Button background color
+    pygame.draw.rect(screen, bg, rect, border_radius = 12)  # Draw button background
+    pygame.draw.rect(screen,(40, 40, 0), rect, width = 2, border_radius = 12)  # Draw button border
+    text = font.render(label, True, (20, 20, 20))   # Render button label
+    screen.blit(text, text.get_rect(center = rect.center))  # Draw button label
 
 # Main Loop
+button_NumPad = pygame.Rect(30, 300, 60, 60) # Define number pad button rectangle
+button_rect = pygame.Rect(30, 120, 160, 60) # Define button rectangle
+message = "Click the Button"    # Button label
 running = True # Main loop flag
 while running: # Main loop
     mouse_pos = pygame.mouse.get_pos()  # Get current mouse position
@@ -39,6 +46,8 @@ while running: # Main loop
     draw_button(button_rect, "Submit", mouse_pos) # Draw the button
     msg_text = font.render(message, True, (0,0,0)) # Render the message text
     screen.blit(msg_text, (30, 220)) # Draw the message on the screen
+    
+    draw_NumPad(button_NumPad, "1", mouse_pos) # Draw the number pad button
 
     pygame.display.flip()       # Update the display
  
