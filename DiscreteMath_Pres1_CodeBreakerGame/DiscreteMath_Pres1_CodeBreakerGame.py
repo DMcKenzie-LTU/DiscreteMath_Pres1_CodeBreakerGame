@@ -1,5 +1,4 @@
-﻿from functools import total_ordering
-import pygame  # Import the Pygame library
+﻿import pygame  # Import the Pygame library
 import csv
 import os
 import random
@@ -122,7 +121,7 @@ def check_answer(user_input, actual_answer):
         return u in ("n","no")
     return u == e
 
-def warp_text(text, max_chars = 34):
+def wrap_text(text, max_chars = 34):
     words = text.split()
     lines = []
     current = ""
@@ -137,23 +136,23 @@ def warp_text(text, max_chars = 34):
     return lines
 
 # ---------- Run State -----------
-pool = load_questions_from_csv(CSV_FILENAME)
+pool = load_questions_from_csv(CSV_FileName)
 if not pool:
     # fallback so it runs even if CSV missing
     pool = [
-        {"test1": "2", "question": "type 47", "answer": "47"},
-        {"test2": "3", "question": "type 45", "answer": "45"},
-        {"test3": "4", "question": "press y", "answer": "y"},
-        {"test4": "5", "question": "type 12", "answer": "12"},
-        {"test5": "4", "question": "type 41", "answer": "41"},
-        {"test6": "6", "question": "press n", "answer": "n"},
+        {"chapter": "1", "question": "type 47", "answer": "47"},
+        {"chapter": "2", "question": "type 45", "answer": "45"},
+        {"chapter": "3", "question": "press y", "answer": "y"},
+        {"chapter": "4", "question": "type 12", "answer": "12"},
+        {"chapter": "5", "question": "type 41", "answer": "41"},
+        {"chapter": "6", "question": "press n", "answer": "n"},
     ]
 
 def restart_run():
     return {
-        "questions_run": pick_six_questions(pool),
+        "questions_run": six_questions(pool),
         "q_index": 0,
-        "tries_left": TRIES_PER_QUESTION,
+        "tries_left": Tries_Per_Question,
         "wrong_questions": 0,
         "input_text": "",
         "message": "New run started!"
@@ -180,22 +179,22 @@ while running:
             # Numpad clicks -> add digit
             for rect, label in numpad_buttons:
                 if rect.collidepoint(event.pos):
-                    input_text += label
+                    state["input_text"] += label
 
             # Clear button (reusing Submit for now)
             if button_Clear.collidepoint(event.pos):
-                input_text = ""
-                message = "Cleared."
+                state["input_text"] = ""
+                state["message"] = "Cleared."
 
             # Enter button -> "submit"
-            if button_enter.collidepoint(event.pos):
+            if button_Enter.collidepoint(event.pos):
                 user = state["input_text"]
                 expected = current["answer"]
 
                 if check_answer(user, expected):
                     state["message"] = "Correct!"
                     state["q_index"] += 1
-                    state["tries_left"] = TRIES_PER_QUESTION
+                    state["tries_left"] = Tries_Per_Question
                 else:
                     state["tries_left"] -= 1
                     if state["tries_left"] > 0:
@@ -203,12 +202,12 @@ while running:
                     else:
                         # used both tries → counts as 1 wrong question
                         state["wrong_questions"] += 1
-                        state["message"] = f"Wrong question! ({state['wrong_questions']}/{MAX_WRONG_QUESTIONS})"
+                        state["message"] = f"Wrong question! ({state['wrong_questions']}/{Max_Wrong_Questions})"
                         state["q_index"] += 1
-                        state["tries_left"] = TRIES_PER_QUESTION
+                        state["tries_left"] = Tries_Per_Question
 
                         # fail the run after 3 wrong questions
-                        if state["wrong_questions"] >= MAX_WRONG_QUESTIONS:
+                        if state["wrong_questions"] >= Max_Wrong_Questions:
                             state["message"] = "FAIL: 3 wrong questions. Restarting run..."
                             state = restart_run()
                             continue
@@ -216,16 +215,16 @@ while running:
                 state["input_text"] = ""
 
                 # finished 6 questions → restart run
-                if state["q_index"] >= TOTAL_QUESTIONS:
+                if state["q_index"] >= Total_Questions:
                     state["message"] = "Run complete! Restarting..."
                     state = restart_run()
                     continue
 
             # YES/NO buttons -> append y/n
             if button_Yes.collidepoint(event.pos):
-                input_text += "y"
+                state["input_text"] += "y"
             if button_No.collidepoint(event.pos):
-                input_text += "n"
+                state["input_text"] += "n"
 
     # Draw
     screen.fill((240, 240, 240))
@@ -235,7 +234,7 @@ while running:
     screen.blit(title, (30, 30))
     
     # Status line
-    status = f"Q {state['q_index']+1}/{TOTAL_QUESTIONS}   Tries: {state['tries_left']}   Wrong: {state['wrong_questions']}/{MAX_WRONG_QUESTIONS}"
+    status = f"Q {state['q_index']+1}/{Total_Questions}   Tries: {state['tries_left']}   Wrong: {state['wrong_questions']}/{Max_Wrong_Questions}"
     status_surf = font_small.render(status, True, (0, 0, 0))
     screen.blit(status_surf, (30, 85))
 
@@ -252,17 +251,17 @@ while running:
         y += 28
 
     # show message
-    msg_text = font.render(message, True, (0, 0, 0))
+    msg_text = font.render(state["message"], True, (0, 0, 0))
     screen.blit(msg_text, (30, 220))
 
     # input display box
     pygame.draw.rect(screen, (255, 255, 255), (30, 270, 740, 60), border_radius=12)
     pygame.draw.rect(screen, (80, 80, 80), (30, 270, 740, 60), width=2, border_radius=12)
-    input_render = font.render(input_text, True, (0, 0, 0))
+    input_render = font.render(state["input_text"], True, (0, 0, 0))
     screen.blit(input_render, (40, 285))
 
     # draw buttons
-    draw_button(button_rect, "CLEAR", mouse_pos)
+    draw_ClearBtn(button_Clear, "CLEAR", mouse_pos)
 
     for rect, label in numpad_buttons:
         draw_NumPad(rect, label, mouse_pos)
