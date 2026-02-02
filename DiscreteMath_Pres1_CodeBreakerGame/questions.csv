@@ -1,0 +1,38 @@
+chapter,question,answer
+4.2,What is the binary expansion of 321?,101000001
+4.2,What is the binary expansion of 1023?,1111111111
+4.2,What is the decimal expansion of 1 1000?,24
+4.2,What is the decimal expansion of 11 1111 1110?,1022
+4.2,What is the binary expansion of 80A?,100000001010
+4.2,What is the binary expansion of ABBA?,1010101110111010
+4.2,What is the hexidecimal notation of 1111 0111?,F
+4.2,What is the hexidecimal notation of 0101 0101 0101 0101?,5555
+4.2,What is the sum of these base 2 numbers in base 2? 100 0111 and 111 1001,1100 0000
+4.2,What is the product of these base 2 numbers in base 2? 100 0111 and 111 1001,10000110001111
+4.2,What is the sum of these base 2 numbers in base 2? 10 1010 1010 and 1 1111 0001,10010011011
+4.2,What is the product of these base 2 numbers in base 2? 10 1010 1010 and 1 1111 0001,1010010110000001010
+4.2,What is the sum of these base 3 numbers in base 3? 112 and 210,1022
+4.2,What is the product of these base 3 numbers in base 3? 112 and 210,101220
+4.2,What is the sum of these base 3 numbers in base 3? 20001 and 1121,21122
+4.2,What is the product of these base 3 numbers in base 3? 20001 and 1121,100121121
+4.2,What is the sum of these base 8 numbers in base 8? 763 and 146,1131
+4.2,What is the product of these base 8 numbers in base 8? 763 and 146,143322
+4.2,What is the sum of these base 8 numbers in base 8? 1111 and 776,2107
+4.2,What is the product of these base 8 numbers in base 8? 1111 and 776,1106556
+4.2,What is the sum of these base 16 numbers in base 16? 1AE and BBC,D6A
+4.2,What is the product of these base 16 numbers in base 16? 1AE and BBC,13B5C8
+4.2,What is the sum of these base 16 numbers in base 16? ABCDE and 1113,ACDF1
+4.2,What is the product of these base 16 numbers in base 16? ABCDE and 1113,B756C27A
+4.3,What is the greatest prime factor of 39?,13
+4.3,What is the greatest prime factor of 2401?,7
+4.3,What is the greatest prime factor of 109?,109
+4.3,What is the greatest prime factor of 39?,13
+4.3,What is the smallest prime factor of 77?,7
+4.3,What is the greatest prime factor of 361?,19
+4.3,What is the smallest prime factor of 1147?,31
+4.3,(Y/N) Is the prime factorization of 10! equal to (2^8)*(3^2)*(5^2)*(7)?,no
+4.3,(Y/N) Are the values presented not relatively prime to 18? [2 3 6],yes
+4.3,(Y/N) Are these values pairwise relatively prime? [21 34 55],yes
+4.3,(Y/N) Are these values pairwise relatively prime? [14 15 85],no
+4.3,(Y/N) Are these values pairwise relatively prime? [23 41 49 64],yes
+4.3,(Y/N) Are these values pairwise relatively prime? [17 18 19 23],yes

@@ -142,10 +142,10 @@ if not pool:
     pool = [
         {"chapter": "1", "question": "type 47", "answer": "47"},
         {"chapter": "2", "question": "type 45", "answer": "45"},
-        {"chapter": "3", "question": "press y", "answer": "y"},
+        {"chapter": "3", "question": "press yes", "answer": "y"},
         {"chapter": "4", "question": "type 12", "answer": "12"},
         {"chapter": "5", "question": "type 41", "answer": "41"},
-        {"chapter": "6", "question": "press n", "answer": "n"},
+        {"chapter": "6", "question": "press no", "answer": "n"},
     ]
 
 def restart_run():
