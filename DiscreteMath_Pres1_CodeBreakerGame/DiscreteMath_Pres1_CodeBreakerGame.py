@@ -42,12 +42,20 @@ def draw_NoBtn(rect, label, mouse_pos):    # Function to draw a No button
     text = font.render(label, True, (20, 20, 20))   # Render button label
     screen.blit(text, text.get_rect(center = rect.center))  # Draw button label)
     
-
+def draw_EnterBtn(rect, label, mouse_pos):    # Function to draw an Enter button
+    hovered = rect.collidepoint(mouse_pos)  # Check if mouse is over the button
+    bg = (255, 255, 0) if hovered else (200, 200, 0)    # Button background color
+    pygame.draw.rect(screen, bg, rect, border_radius = 12)  # Draw button background
+    pygame.draw.rect(screen,(80, 80, 0), rect, width = 2, border_radius = 12)  # Draw button border
+    text = font.render(label, True, (20, 20, 20))   # Render button label
+    screen.blit(text, text.get_rect(center = rect.center))  # Draw button label
+    
 # Main Loop
 button_NumPad = pygame.Rect(30, 300, 60, 60) # Define number pad button rectangle
 button_rect = pygame.Rect(30, 120, 160, 60) # Define button rectangle
 button_Yes = pygame.Rect((30 + 5 * (60 + 10)), 380, 100, 60) # Define Yes button rectangle
 button_No = pygame.Rect((30 + 5 * (60 + 10)), 450, 100, 60) # Define No button rectangle
+button_Enter = pygame.Rect((140 + 5 * (60 + 10)), 380, 160, 130) # Define Enter button rectangle
 message = "Click the Button"    # Button label
 running = True # Main loop flag
 while running: # Main loop
@@ -81,6 +89,7 @@ while running: # Main loop
             
     draw_YesBtn(button_Yes, "YES", mouse_pos)
     draw_NoBtn(button_No, "NO", mouse_pos)
+    draw_EnterBtn(button_Enter, "ENTER", mouse_pos)
     pygame.display.flip()       # Update the display
  
 # Close Game    
