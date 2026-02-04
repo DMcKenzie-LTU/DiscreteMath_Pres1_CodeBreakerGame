@@ -36,3 +36,45 @@ chapter,question,answer
 4.3,(Y/N) Are these values pairwise relatively prime? [14 15 85],n
 4.3,(Y/N) Are these values pairwise relatively prime? [23 41 49 64],y
 4.3,(Y/N) Are these values pairwise relatively prime? [17 18 19 23],y
+Lucky,Press 0,0
+Unlucky,Guess a letter,D
+Lucky,Press Yes,y
+Unlucky,Guess a number,4
+Lucky,Press A,A
+Unlucky,Guess Y/N,y
+6.1,(Y/N) There are 21 math majors and 325 CS majors. Should you use the product rule to find out the number of ways that two representatives can be picked so that one is a math major AND the other is a CS major?,y
+6.1,There are 21 math majors and 325 CS majors. How many ways can two representatives be picked so that one is a math major AND the other is a CS major?,6825
+6.1,(Y/N) There are 21 math majors and 325 CS majors. Should you use the product rule to find out the number of ways that two representatives can be picked so that one is either a math major OR a CS major?,n
+6.1,There are 21 math majors and 325 CS majors. How many ways can two representatives be picked so that one is either a math major OR a CS major?,346
+6.1,(Y/N) A building contains 28 floors and 37 offices per floor. Should you use the sum rule to find the total number of offices in the building?,n
+6.1,A building contains 28 floors and 37 offices per floor. How many offices are in the building?,1036
+6.1,A 10 questions test has four possible answers per question. How many ways can the student answer the questions on the test if the student answers each question?,1048576
+6.1,A 10 questions test has four possible answers per question. How many ways can the student answer the questions on the test if the student can leave answers blank?,9765625
+6.1,A brand of shirt comes in 12 colors. Has an adult and child varients. For each varient there are three sizes. How many differnt types of this shirt are made?,72
+6.1,(Y/N) Consider people with three-letter initials. Is [26 25 24] the number of choices for the first-second-third initials if none of the letters are repeated?,y
+6.1,Consider people with three-letter initials. How many different three-leter initials are there with no letters repeated?,15600
+6.1,How many bit strings of length 12 both begin and end with 1?,1024
+6.1,(Y/N) Consider all bit strings of length six or less. You should use the subtraction and division rule to calculate the number of bit strings of length six or less - not counting the empty string.,n
+6.1,Consider all bit strings of length six or less. How many bit strings are there of length six or less - not counting the empty string?,126
+6.1,(Y/N) Consider all bit strings of length four or less. You should use the sum and product rule to calculate the number of bit strings of length four or less - not counting the empty string.,y
+6.1,Consider strings of four lowercase letters. How many strings are there of four lowercase letters that have the letter x in them?,66351
+6.1,Consider two positive integers 5 and 31. How many positive integers between 5 and 31 that are divisible by 3?,9
+6.3,(Y/N) [abc acb bac bca cab cba] Are these all permutations of [a b c].,y
+6.3,Find the total number of different permutations of the set [a b c d e f g].,5040
+6.3,P(6 1) Do math.,6
+6.3,P(6 4) Do math.,360
+6.3,P(8 2) Do math.,56
+6.3,P(8 5) Do math.,6720
+6.3,C(5 0) Do math.,1
+6.3,C(8 4) Do math.,70
+6.3,In how many different orders can four runners finish a race if no ties are allowed?,24
+6.3,How many possibilities are there for the win place and show positions in a horse race with 12 horses if all orders of finish are possible?,1320
+6.3,(Y/N) the bit strings of length 7 have exactly four ones is 34.,n
+6.3,(Y/N) the bit strings of length 11 have at most four ones is 562.,y
+6.3,(Y/N) the bit strings of length 10 have at least four ones is 848.,y
+6.3,In how many ways can a set of six letters be selected from the English alphabet?,230230
+6.3,(Y/N) the bit strings of length 12 have exactly three zeros is 240.,n
+6.3,A club has 27 members. How many ways are there to choose four members of the club to serve on an executive committee?,17550
+6.3,A club has 27 members. How many ways are there to choose a president vice president secretary and treasurer of the club where no person can hold more than one office?,421200
+6.3,7 women and 9 men are on the faculty in the mathematics department at a school. How many ways are there to select a committee of five members of the department if at least one woman and at least one man must be on the committee?,4221
+6.3,Suppose that a department contains 10 men and 13 women. How many ways are there to form a committee with six members if it must have the same number of men and women?,34320
